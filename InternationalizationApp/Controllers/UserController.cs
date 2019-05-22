@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InternationalizationApp.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,14 +10,15 @@ using System.Web.Routing;
 
 namespace InternationalizationApp.Controllers
 {
+    [AllowCrossSiteJson]
     public class UserController : ApiController
     {
         [HttpGet]
         [Route("api/login/{email}/{password}")]
-        public bool Login([FromUri]string email, [FromUri]string password)
+        public HttpResponseMessage Login([FromUri]string email, [FromUri]string password)
         {
-            if ((email != null) && (password != null)) return true;
-                else return false;
+            if ((email != null) && (password != null)) return Request.CreateResponse(HttpStatusCode.OK, true);
+                else return Request.CreateResponse(HttpStatusCode.OK, false);
         }
 
         public string Get(int id)
