@@ -1,4 +1,5 @@
-﻿using InternationalizationApp.Helper;
+﻿using InternationalizationApp.DAL.Models;
+using InternationalizationApp.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,18 @@ namespace InternationalizationApp.Controllers
                 else return Request.CreateResponse(HttpStatusCode.OK, false);
         }
 
-        public string Get(int id)
+        [HttpPost]
+        [Route("api/signup")]
+        public HttpResponseMessage SignUp([FromBody]User value)
         {
-            return "value";
+            return Request.CreateResponse(HttpStatusCode.OK, true);
+        }
+
+        [HttpGet]
+        [Route("api/check")]
+        public HttpResponseMessage CheckServer()
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, true);
         }
 
         public void Post([FromBody]string value)

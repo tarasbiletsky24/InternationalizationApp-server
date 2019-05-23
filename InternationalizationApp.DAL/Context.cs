@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace InternationalizationApp.DAL
 {
-    public class Class1
+    class Context : DbContext
     {
+        public Context()
+        {
+        }
     }
 }
