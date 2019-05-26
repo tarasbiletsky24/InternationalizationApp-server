@@ -8,9 +8,11 @@ namespace InternationalizationApp.DAL.Models
 {
     public class User
     {
-        public int Id;
-        public string Email;
-        public string Login;
-        public string Password;
+        public int UserId { get; set; }
+        public string Email { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
+
+        public ICollection<Repository> repositories { get; set; }
     }
 }

@@ -8,8 +8,10 @@ namespace InternationalizationApp.DAL.Models
 {
     public class Repository
     {
-        public int Id;
-        public string Name;
-        public string Link;
+        public int RepositoryId { get; set; }
+        public string Name { get; set; }
+        public string Link { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 }
