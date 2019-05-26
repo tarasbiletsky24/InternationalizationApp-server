@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InternationalizationApp.DAL
 {
-    class Context : DbContext
+    public class Context : DbContext
     {
         public Context() : base(
             )
@@ -17,7 +17,7 @@ namespace InternationalizationApp.DAL
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Repository> repositories { get; set; }
+        public DbSet<Repository> Repositories { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

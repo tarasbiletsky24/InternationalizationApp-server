@@ -1,4 +1,5 @@
-﻿using InternationalizationApp.DAL.Models;
+﻿using InternationalizationApp.BLL.Services;
+using InternationalizationApp.DAL.Models;
 using InternationalizationApp.Helper;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,19 @@ namespace InternationalizationApp.Controllers
     [AllowCrossSiteJson]
     public class UserController : ApiController
     {
+
+        private readonly IUserService userService;
+
         [HttpGet]
-        [Route("api/login/{email}/{password}")]
-        public HttpResponseMessage Login([FromUri]string email, [FromUri]string password)
+        [Route("api/login/{login}/{password}")]
+        public async Task<HttpResponseMessage> SignIn([FromUri]string login, [FromUri]string password)
         {
-            if ((email != null) && (password != null)) return Request.CreateResponse(HttpStatusCode.OK, true);
-                else return Request.CreateResponse(HttpStatusCode.OK, false);
+            var user = await userService.GetUserByLogin(login);
+            if (user != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, user.Password == password);
+            }
+            else return Request.CreateResponse(HttpStatusCode.OK, false);
         }
 
         [HttpPost]
