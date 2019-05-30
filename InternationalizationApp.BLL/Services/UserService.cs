@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace InternationalizationApp.BLL.Services
 {
-    class UserService : BaseService, IUserService
+    public class UserService : BaseService, IUserService
     {
-        public UserService(UnitOfWork db) : base(db)
+        public UserService(IUnitOfWork db) : base(db)
         {
         }
         public async Task<User> GetUserAsync(int id)
@@ -20,7 +20,9 @@ namespace InternationalizationApp.BLL.Services
 
         public async Task<User> AddUserAsync(User user)
         {
-            return db.Users.AddUserAsync(user);
+            db.Users.AddUserAsync(user);
+            db.Save();
+            return user;
         }
 
         public async Task<User> GetUserByLogin(string login)

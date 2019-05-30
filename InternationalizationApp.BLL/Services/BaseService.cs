@@ -9,8 +9,8 @@ namespace InternationalizationApp.BLL.Services
 {
     public class BaseService
     {
-        protected readonly UnitOfWork db;
-        public BaseService(UnitOfWork db)
+        protected readonly IUnitOfWork db;
+        public BaseService(IUnitOfWork db)
         {
             this.db = db;
         }

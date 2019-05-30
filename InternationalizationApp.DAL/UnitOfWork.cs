@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InternationalizationApp.DAL
 {
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly Context context;
         private bool disposed;
@@ -20,6 +20,11 @@ namespace InternationalizationApp.DAL
         }
 
         public IUserRepository Users => users ?? (users = new UserRepository(context));
+
+        public void Save()
+        {
+            context.SaveChanges();
+        }
 
         public virtual void Dispose(bool disposing)
         {
